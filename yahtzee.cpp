@@ -35,6 +35,7 @@ int getScoreOption(int onesScore, int twosScore, int threesScore, int foursScore
                    int fourOfAKind, int fullHouse, int smallStraight,
                    int largeStraight, int yahtzee, int chance);
 int tabulateDice(int n, int d1, int d2, int d3, int d4, int d5);
+int scoreOnes(int o);
 
 const int NUM_CATEGORIES = 13;
 const int SIDES = 6;
@@ -124,12 +125,24 @@ int main()
                                          fivesScore, sixesScore, threeOfAKind,
                                          fourOfAKind, fullHouse, smallStraight,
                                          largeStraight, yahtzee, chance);
-
-        /*switch (scoreOption)
+										 
+		
+		/*
+			I am not very good with cpp but I think this should work
+			The score ones takes the tabulateDice and mulitplies it by 1 since that is the value
+			of the dice being tabulated.
+		*/
+		int scoreOnes(int o)
+		{
+			return 1 * 0;
+		}
+        switch (scoreOption)
         {
             case ONES:
-                onesScore = scoreOnes(ones, twos, threes, fours, fives, sixes);
+                onesScore = scoreOnes(ones);
                 break;
+		}
+		/*
             case TWOS:
                 twosScore = scoreTwos(ones, twos, threes, fours, fives, sixes);
                 break;
