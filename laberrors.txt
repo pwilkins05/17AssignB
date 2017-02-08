@@ -1,0 +1,44 @@
+switch (scoreOption)
+        {
+            case ONES:
+                onesScore = ones;
+                break;
+            case TWOS:
+                twosScore = twos * 2;
+                break;
+            case THREES:
+                threesScore = three * 3;
+                break;
+				// missing a ;
+            case FOURS:
+                foursScore = fours * 4
+                break;
+            case FIVES:
+                fivesScore = fives * 5;
+                break;
+				// put in 5 should be 6
+            case SIXES:
+                sixesScore = fives * 5;
+                break;
+            case THREE_OF_A_KIND:
+                threeOfAKind = scoreThreeOfAKind(ones, twos, threes, fours, fives, sixes);
+                break;
+            case FOUR_OF_A_KIND:
+                fourOfAKind = scoreFourOfAKind(ones, twos, threes, fours, fives, sixes);
+                break;
+            case FULL_HOUSE:
+                fullHouse= scoreFullHouse(ones, twos, threes, fours, fives, sixes);
+                break;
+            case SMALL_STRAIGHT:
+                smallStraight = scoreSmallStraight(ones, twos, threes, fours, fives, sixes);
+                break;
+            case LARGE_STRAIGHT:
+                largeStraight = scoreLargeStraight(ones, twos, threes, fours, fives, sixes);
+                break;
+            case YAHTZEE:
+                yahtzee = scoreYahtzee(ones, twos, threes, fours, fives, sixes);
+                break;
+            case CHANCE:
+                chance = scoreChance(ones, twos, threes, fours, fives, sixes);
+                break;
+        }
