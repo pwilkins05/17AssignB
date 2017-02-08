@@ -68,16 +68,16 @@ int main()
     srand(time(0));
 
 
-
+//Altered formulas used to obtain values by adding 1 to account for possible 0 remainder from Modulus Operation.
     for (int turn = 0; turn < NUM_CATEGORIES; turn++)
     {
         int round = 1;
         ones = twos = threes = fours = fives = sixes = 0;
-        die1 = rand() % SIDES;
-        die2 = rand() % SIDES;
-        die3 = rand() % SIDES;
-        die4 = rand() % SIDES;
-        die5 = rand() % SIDES;
+        die1 = rand() % SIDES + 1;
+        die2 = rand() % SIDES + 1;
+        die3 = rand() % SIDES + 1;
+        die4 = rand() % SIDES + 1;
+        die5 = rand() % SIDES + 1;
 
         printRoll(die1, die2, die3, die4, die5);
 
@@ -88,26 +88,26 @@ int main()
             redo3 = askReroll(3);
             redo4 = askReroll(4);
             redo5 = askReroll(5);
-
+	
             if (redo1)
             {
-                die1 = rand() % SIDES;
+                die1 = rand() % SIDES + 1;
             }
             if (redo2)
             {
-                die2 = rand() % SIDES;
+                die2 = rand() % SIDES + 1;
             }
             if (redo3)
             {
-                die3 = rand() % SIDES;
+                die3 = rand() % SIDES + 1;
             }
             if (redo4)
             {
-                die4 = rand() % SIDES;
+                die4 = rand() % SIDES + 1;
             }
             if (redo5)
             {
-                die5 = rand() % SIDES;
+                die5 = rand() % SIDES + 1;
             }
 
             printRoll(die1, die2, die3, die4, die5);
