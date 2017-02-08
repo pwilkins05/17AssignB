@@ -195,6 +195,7 @@ int scoreOnes(int o)
 	return 1 * o;
 }
 
+
 /*********************************************************
  *
  * printRoll
@@ -231,6 +232,8 @@ bool askReroll(int n)
     {
         cout << "Would you like to reroll die " << n << "? (Y/N) ";
         cin >> ch;
+		ch = toupper(ch);
+
         switch (ch)
         {
             case 'Y':
