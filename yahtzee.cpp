@@ -132,10 +132,7 @@ int main()
 			The score ones takes the tabulateDice and mulitplies it by 1 since that is the value
 			of the dice being tabulated.
 		*/
-		int scoreOnes(int o)
-		{
-			return 1 * 0;
-		}
+		
         switch (scoreOption)
         {
             case ONES:
@@ -184,6 +181,18 @@ int main()
         printScore(onesScore, twosScore, threesScore, foursScore, fivesScore, sixesScore,
                    threeOfAKind, fourOfAKind, fullHouse, smallStraight, largeStraight, yahtzee, chance);
     }
+}
+
+/*********************************************************
+ *
+ * Score Option methods
+ * ------------------
+ * This function calculates the score for the dice rolled.
+ *
+ *********************************************************/
+int scoreOnes(int o)
+{
+	return 1 * o;
 }
 
 /*********************************************************
