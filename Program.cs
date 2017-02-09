@@ -45,7 +45,7 @@ namespace ConsoleApplication1 {
         public double HeightInInches { get; set; }
         public double WeightInPounds { get; set; }
 
-        //Changed height formula to set HeightInInches variable to value of height argument.
+        //Changed height formula to set HeightInInches variable to value of height argument. *
 
         public Person(double height, double weight)
         {
