@@ -47,7 +47,7 @@ enum Category { ONES = 1, TWOS, THREES, FOURS, FIVES, SIXES, THREE_OF_A_KIND,
 int main()
 {
 
-    int die1, die2, die3, die4, die5;
+    int dice [5] = { die1, die2, die3, die4, die5 };    //put dice into an array
     bool redo1, redo2, redo3, redo4, redo5;
 
     int ones, twos, threes, fours, fives, sixes;
@@ -79,7 +79,7 @@ int main()
         die4 = rand() % SIDES + 1;
         die5 = rand() % SIDES + 1;
 
-        printRoll(die1, die2, die3, die4, die5);
+        printRoll(dice);     //hoping that this successfully rolls the dice
 
         do
         {
@@ -88,7 +88,7 @@ int main()
             redo3 = askReroll(3);
             redo4 = askReroll(4);
             redo5 = askReroll(5);
-	
+
             if (redo1)
             {
                 die1 = rand() % SIDES + 1;
@@ -110,29 +110,29 @@ int main()
                 die5 = rand() % SIDES + 1;
             }
 
-            printRoll(die1, die2, die3, die4, die5);
+            printRoll(dice);      //Again, replaced list of dice with the array
             round++;
         } while ((redo1 || redo2 || redo3 || redo4 || redo5) && round < 3);
 
-        ones = tabulateDice(1, die1, die2, die3, die4, die5);
-        twos = tabulateDice(2, die1, die2, die3, die4, die5);
-        threes = tabulateDice(3, die1, die2, die3, die4, die5);
-        fours = tabulateDice(4, die1, die2, die3, die4, die5);
-        fives = tabulateDice(5, die1, die2, die3, die4, die5);
-        sixes = tabulateDice(6, die1, die2, die3, die4, die5);
+        ones = tabulateDice(1, dice);            // cleaned up more lists of dice
+        twos = tabulateDice(2, dice);            // with the array
+        threes = tabulateDice(3, dice);
+        fours = tabulateDice(4, dice);
+        fives = tabulateDice(5, dice);
+        sixes = tabulateDice(6, dice);
 
         int scoreOption = getScoreOption(onesScore, twosScore, threesScore, foursScore,
                                          fivesScore, sixesScore, threeOfAKind,
                                          fourOfAKind, fullHouse, smallStraight,
                                          largeStraight, yahtzee, chance);
-										 
-		
+
+
 		/*
 			I am not very good with cpp but I think this should work
 			The score ones takes the tabulateDice and mulitplies it by 1 since that is the value
 			of the dice being tabulated.
 		*/
-		
+
         switch (scoreOption)
         {
             case ONES:
@@ -418,7 +418,7 @@ int getScoreOption(int onesScore, int twosScore, int threesScore, int foursScore
         }
         if (!valid)
         {
-            cout << "That category has already been used" << endl;
+            cout << "That category has already been used. Please use another." << endl;   //Added please to make the program more nice
         }
     } while (!valid);
 
