@@ -132,10 +132,7 @@ int main()
 			The score ones takes the tabulateDice and mulitplies it by 1 since that is the value
 			of the dice being tabulated.
 		*/
-		int scoreOnes(int o)
-		{
-			return 1 * 0;
-		}
+		
         switch (scoreOption)
         {
             case ONES:
@@ -188,6 +185,19 @@ int main()
 
 /*********************************************************
  *
+ * Score Option methods
+ * ------------------
+ * This function calculates the score for the dice rolled.
+ *
+ *********************************************************/
+int scoreOnes(int o)
+{
+	return 1 * o;
+}
+
+
+/*********************************************************
+ *
  * printRoll
  * ------------------
  * This function prints out the current state of the dice,
@@ -223,6 +233,8 @@ bool askReroll(int n)
     {
         cout << "Would you like to reroll die " << n << "? (Y/N) ";
         cin >> ch;
+		ch = toupper(ch);
+
         switch (ch)
         {
             case 'Y':
