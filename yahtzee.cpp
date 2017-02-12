@@ -17,7 +17,7 @@
 // TODO switch to using array for dice
 // TODO: add yahtzee bonus score
 // TODO: implement scoring functions (see switch statement, line 125)
-// TODO: make ask reroll accept lowercase letters
+// TODO: make ask reroll accept lowercase letters (attempted solution by Aaron)
 // BUG: dice not holding correct values
 
 using namespace std;
@@ -215,6 +215,7 @@ void printRoll(int n1, int n2, int n3, int n4, int n5)
  * 'Y' and 'N'.
  *
  *********************************************************/
+// Took at guess at how to change this to also accept lower case.
 bool askReroll(int n)
 {
     char ch;
@@ -226,8 +227,12 @@ bool askReroll(int n)
         {
             case 'Y':
                 return true;
+			case 'y':
+				return true;
             case 'N':
                 return false;
+			case 'n':
+				return false;
             default:
                 cout << "Invalid response" << endl;
         }
