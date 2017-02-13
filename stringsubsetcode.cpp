@@ -18,8 +18,9 @@ void recPrintAllSubsets( string input, string output )
 
 int main()
 {
+    string input;
     cout << "give me a string" << endl;
-                                            //Nowhere to receive a string input!
+                                            //Nowhere to receive a string input! (input has now been initialized and can be received! -Liam)
     getline(cin, input);
 
     cout << input << endl;
