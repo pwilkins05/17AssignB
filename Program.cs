@@ -27,13 +27,21 @@ namespace ConsoleApplication1 {
 
         }
 
+        //I've adjusted the calculator to remain in inches and
+        //pounds for it's formula. The formula I used is based
+        //off of what I could find online for proper bmi calc:
+        //Calculate BMI by dividing weight in pounds (lbs) by 
+        //height in inches (in) squared and multiplying by a 
+        //conversion factor of 703
         private static double CalculateBMI(double h, double w) {
-            var heightInMeters = h * 0.025;
-            var weightInKg = w * 0.45;
+            //var heightInMeters = h * 0.025;
+            //var weightInKg = w * 0.45;
 
-            heightInMeters = Math.Pow(heightInMeters, 2);
+            //heightInMeters = Math.Pow(heightInMeters, 2);
 
-            var bmi = weightInKg / heightInMeters;
+            //var bmi = weightInKg / heightInMeters;
+
+            var bmi = (w / Math.Pow(h, 2)) * 703;
 
             return bmi;
         }
