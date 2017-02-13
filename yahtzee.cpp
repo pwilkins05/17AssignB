@@ -15,7 +15,7 @@
 
 // TODO: switch to using arrays for scores
 // TODO switch to using array for dice
-// TODO: add yahtzee bonus score
+// TODO: add yahtzee bonus score (Attempted by Liam - full implementation of scoreYahtzee function.)
 // TODO: implement scoring functions (see switch statement, line 125)
 // TODO: make ask reroll accept lowercase letters (attempted solution by Aaron)
 // BUG: dice not holding correct values
@@ -36,6 +36,10 @@ int getScoreOption(int onesScore, int twosScore, int threesScore, int foursScore
                    int largeStraight, int yahtzee, int chance);
 int tabulateDice(int n, int d1, int d2, int d3, int d4, int d5);
 int scoreOnes(int o);
+int scoreYahtzee(int ones, int twos, int threes, int fours,
+                 int fives, int sixes, int previousYahtzee,
+                 bool isBonus); //Liam's implementation w/ yahtzee bonus.
+
 
 const int NUM_CATEGORIES = 13;
 const int SIDES = 6;
@@ -49,6 +53,7 @@ int main()
 
     int dice [5] = { die1, die2, die3, die4, die5 };    //put dice into an array
     bool redo1, redo2, redo3, redo4, redo5;
+    bool bonus = false; //haven't had any yahtzees yet.
 
     int ones, twos, threes, fours, fives, sixes;
 
@@ -58,7 +63,7 @@ int main()
     int fullHouse;
     int smallStraight;
     int largeStraight;
-    int yahtzee;
+    int yahtzee = 0;
     int chance;
 
     onesScore = twosScore = threesScore = foursScore = fivesScore = sixesScore = EMPTY;
@@ -138,7 +143,6 @@ int main()
             case ONES:
                 onesScore = scoreOnes(ones);
                 break;
-		}
 		/*
             case TWOS:
                 twosScore = scoreTwos(ones, twos, threes, fours, fives, sixes);
@@ -169,13 +173,19 @@ int main()
                 break;
             case LARGE_STRAIGHT:
                 largeStraight = scoreLargeStraight(ones, twos, threes, fours, fives, sixes);
-                break;
+                break; */
             case YAHTZEE:
-                yahtzee = scoreYahtzee(ones, twos, threes, fours, fives, sixes);
+                yahtzee = scoreYahtzee(ones, twos, threes, fours, fives, sixes, yahtzee, bonus);
+                if(yahtzee > 0)
+                    bonus = true;
+                //Technically, by  official yahtzee rules, you also score in another category in addition to bonus yahtzee points but that would require a very different approach.
+                //if someone wants to try implementing that ruleset go ahead.
                 break;
-            case CHANCE:
+        }
+            /*case CHANCE:
                 chance = scoreChance(ones, twos, threes, fours, fives, sixes);
                 break;
+
         }*/
 
         printScore(onesScore, twosScore, threesScore, foursScore, fivesScore, sixesScore,
@@ -193,6 +203,28 @@ int main()
 int scoreOnes(int o)
 {
 	return 1 * o;
+}
+
+/*********************************************************
+ *
+ * scoreYahtzee
+ * ------------------
+ * This function determines if dice are a yahtzee
+ * and if that yahtzee is a yahtzee bonus,
+ * then returns the new yahtzee score.
+ *
+ *********************************************************/
+int scoreYahtzee(int ones, int twos, int threes, int fours, int fives, int sixes, int previousYahtzee, bool isBonus)
+{
+    if(ones == 5 || twos == 5 || threes == 5 || fours == 5 || fives == 5 || sixes == 5) //if there is 5 of any particular die type
+    {
+        if(isBonus)
+            return previousYahtzee += 100; //score a bonus 100 in yahtzee if one has already been scored
+        else
+            return 50; //score a regular yahtzee if one hasn't already been scored
+    }
+    else //if not
+        return 0; //score 0 in the yahtzee category.
 }
 
 
@@ -410,7 +442,7 @@ int getScoreOption(int onesScore, int twosScore, int threesScore, int foursScore
                 if (largeStraight == EMPTY) valid = true;
                 break;
             case YAHTZEE:
-                if (yahtzee == EMPTY) valid = true;
+                if (yahtzee == EMPTY || yahtzee > 0) valid = true; //making sure you can still score here for new bonus yahtzee
                 break;
             case CHANCE:
                 if (chance == EMPTY) valid = true;
